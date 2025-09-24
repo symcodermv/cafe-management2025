@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>symcodermv-cafe @2025</title>
+    <title>VIEWSPOT</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
@@ -17,11 +17,20 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
     
     <style>
+          /* Custom font for Dhivehi */
+        @font-face {
+            font-family: 'Faruma';
+            src: url('fonts/Mv_MAG_Round_XBold.otf');
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Poppins', Arial, sans-serif;
+            
+            
+            
         }
         
         body {
@@ -107,6 +116,49 @@
             min-height: 100vh;
         }
         
+          /* Full screen button */
+        .fullscreen-btn {
+            position: absolute;
+            left: 70px;
+            top: 15px;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            z-index: 10;
+            padding: 5px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        .fullscreen-btn:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Exit Full Screen Button */
+        .exit-fullscreen-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #1a2a6c;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            display: none;
+        }
+        
+        body.fullscreen-mode .exit-fullscreen-btn {
+            display: block;
+        }
+        
+        
         /* Sidebar Styles */
         .sidebar {
             width: 250px;
@@ -122,11 +174,13 @@
             padding: 0 20px 20px;
             border-bottom: 1px solid #2d4b32;
             margin-bottom: 20px;
+            
         }
         
         .sidebar-header h2 {
             color: #f8a31c;
             font-size: 22px;
+            
         }
         
         .sidebar-menu {
@@ -140,10 +194,12 @@
         .sidebar-menu a {
             display: flex;
             align-items: center;
-            padding: 12px 20px;
+            padding: 12px 40px;
             color: #ddd;
             text-decoration: none;
             transition: all 0.3s;
+              font-family: 'Faruma';
+              font-size: larger;
         }
         
         .sidebar-menu a:hover, .sidebar-menu a.active {
@@ -174,8 +230,9 @@
         }
         
         .header h1 {
-            color: #4a9e5b;
+            color: #000b72;
             font-size: 24px;
+            font-family: 'Faruma';
         }
         
         .logout-btn {
@@ -206,6 +263,7 @@
             padding: 20px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             text-align: center;
+            
         }
         
         .stat-card i {
@@ -221,7 +279,8 @@
         
         .stat-card p {
             color: #666;
-            font-size: 14px;
+            font-size: 16px;
+            font-family: 'Faruma';
         }
         
         .profit {
@@ -297,6 +356,11 @@
             font-size: 14px;
             font-weight: 500;
         }
+        .thaana-heading {
+  font-family: "Noto Sans Thaana", "MV Waheed", "Faruma", sans-serif;
+  
+}
+
         
         .btn:hover {
             background-color: #3a7d48;
@@ -324,6 +388,10 @@
         
         .btn-info:hover {
             background-color: #138496;
+        }
+
+        .thaana-text{
+             font-family: 'Faruma';
         }
         
         /* Tables */
@@ -538,7 +606,10 @@
         
         .user-info h3 {
             margin-bottom: 5px;
+            
         }
+
+       
         
         .user-info p {
             color: #666;
@@ -600,6 +671,7 @@
         .pos-product-card h3 {
             font-size: 16px;
             margin-bottom: 5px;
+            
         }
         
         .pos-product-card p {
@@ -860,8 +932,8 @@
             position: absolute;
             top: 10px;
             right: 10px;
-            background-color: #4a9e5b;
-            color: white;
+          
+            color: rgb(15, 7, 89);
             border: none;
             padding: 5px 10px;
             border-radius: 4px;
@@ -1008,12 +1080,14 @@
             right: 0;
             height: 4px;
             background: linear-gradient(90deg, #4a9e5b, #2d4b32);
+            
         }
         
         .financial-card h3 {
             color: #333;
             margin-bottom: 15px;
             font-size: 18px;
+            font-family: 'Faruma';
         }
         
         .financial-value {
@@ -1214,10 +1288,11 @@
     </style>
 </head>
 <body>
+    
     <!-- Login Screen -->
     <div id="loginScreen" class="login-container">
         <div class="login-form">
-            <h2>symcodermv-cafe Admin Login</h2>
+            <h2>VIEWSPOT</h2>
             <div class="form-group">
                 <label for="username">Username</label>
                 <input type="text" id="username" placeholder="Enter your username">
@@ -1232,7 +1307,9 @@
                 <button class="owner-btn" id="ownerBtn">Owner Options</button>
             </div>
         </div>
+        
     </div>
+     
 
     <!-- Owner Password Modal -->
     <div id="ownerPasswordModal" class="modal">
@@ -1325,6 +1402,7 @@
                         <button type="submit" class="btn">Create User</button>
                     </form>
                 </div>
+               
                 
                 <div id="user-list" class="tab-content">
                     <div class="user-list" id="userListContainer">
@@ -1340,27 +1418,36 @@
         <!-- Sidebar -->
         <div class="sidebar">
             <div class="sidebar-header">
-                <h2>symcodermv-cafe Admin</h2>
+                <h2>VIEWSPOT</h2>
             </div>
             <ul class="sidebar-menu">
-                <li><a href="#" class="active" data-tab="dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
-                <li><a href="#" data-tab="pos"><i class="fas fa-cash-register"></i> POS System</a></li>
-                <li><a href="#" data-tab="orders"><i class="fas fa-shopping-cart"></i> Orders</a></li>
-                <li><a href="#" data-tab="products"><i class="fas fa-glass"></i> Products</a></li>
-                <li><a href="#" data-tab="categories"><i class="fas fa-tags"></i> Categories</a></li>
-                <li><a href="#" data-tab="stock"><i class="fas fa-boxes"></i> Stock Management</a></li>
-                <li><a href="#" data-tab="customers"><i class="fas fa-users"></i> Customer Management</a></li>
-                <li><a href="#" data-tab="credit"><i class="fas fa-credit-card"></i> Credit Management</a></li>
-                <li><a href="#" data-tab="expenses"><i class="fas fa-money-bill"></i> Expenses Management</a></li>
-                <li><a href="#" data-tab="documents"><i class="fas fa-file-invoice"></i> Documents</a></li>
-                <li><a href="#" data-tab="settings"><i class="fas fa-cog"></i> Settings</a></li>
+                <li><a href="#" class="active" data-tab="dashboard"><i class="fas fa-tachometer-alt"></i> ޑޭޝްބޯޑް</a></li>
+                <li><a href="#" data-tab="pos"><i class="fas fa-cash-register"></i> ވިއްކުމުގެ ނިޒާމް</a></li>
+                <li><a href="#" data-tab="orders"><i class="fas fa-shopping-cart"></i> ވިއްކުންތައް ބެލެހެއްޓުން</a></li>
+                <li><a href="#" data-tab="products"><i class="fas fa-glass"></i> އައިޓަމް</a></li>
+                <li><a href="#" data-tab="categories"><i class="fas fa-tags"></i> ބާވަތްތައް ބެލެހެއްޓުން</a></li>
+                <li><a href="#" data-tab="stock"><i class="fas fa-boxes"></i> ސްޓޮކް ބެލެހެއްޓުން</a></li>
+                <li><a href="#" data-tab="customers"><i class="fas fa-users"></i> ކަސްޓަމާސް</a></li>
+                <li><a href="#" data-tab="credit"><i class="fas fa-credit-card"></i> ކްރެޑިޓް ބެލެހެއްޓުން</a></li>
+                <li><a href="#" data-tab="expenses"><i class="fas fa-money-bill"></i> ޚަރަދުތައް ބެލެހެއްޓުން</a></li>
+                <li><a href="#" data-tab="documents"><i class="fas fa-file-invoice"></i> ޑޮކިއުމަންސް</a></li>
+                <li><a href="#" data-tab="settings"><i class="fas fa-cog"></i> ސެޓިން</a></li>
             </ul>
         </div>
+          <!-- Exit Full Screen Button -->
+    <button class="exit-fullscreen-btn" id="exit-fullscreen-btn">
+        <i class="fas fa-compress"></i>
+    </button>
+    
+     <!-- Full screen button moved to left side -->
+            <button class="fullscreen-btn" id="fullscreen-btn">
+                <i class="fas fa-expand"></i>
+            </button>
 
         <!-- Main Content -->
         <div class="main-content">
             <div class="header">
-                <h1>Admin Dashboard</h1>
+                <h1>ޑޭޝްބޯޑް</h1>
                 <div>
                     <span id="currentUserInfo" style="margin-right: 15px;"></span>
                     <button class="logout-btn" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</button>
@@ -1373,72 +1460,74 @@
                     <div class="stat-card">
                         <i class="fas fa-shopping-cart"></i>
                         <h3 id="totalOrders">0</h3>
-                        <p>Total Orders</p>
+                        <p>ޖުމްލަ އޯޑަރު</p>
                     </div>
                     <div class="stat-card">
                         <i class="fas fa-users"></i>
                         <h3 id="totalCustomers">0</h3>
-                        <p>Total Customers</p>
+                        <p>ކަސްޓަމަރުން</p>
                     </div>
                     <div class="stat-card">
                         <i class="fas fa-coins"></i>
                         <h3 id="totalRevenue">MVR 0</h3>
-                        <p>Total Revenue</p>
+                        <p>ޖުމްލަ ސޭލްސް</p>
                     </div>
                     <div class="stat-card">
                         <i class="fas fa-money-bill-wave"></i>
                         <h3 id="netProfit" class="profit">MVR 0</h3>
-                        <p>Net Profit/Loss</p>
+                        <p>ސާފު ފައިދާ/ގެއްލުން</p>
                     </div>
                     <div class="stat-card">
                         <i class="fas fa-pause-circle"></i>
                         <h3 id="heldOrdersCount">0</h3>
-                        <p>Held Orders</p>
+                        <p>ހިފެހެއްޓިފައިވާ ވިއްކުންތައް</p>
                     </div>
                     <div class="stat-card">
                         <i class="fas fa-credit-card"></i>
                         <h3 id="creditCustomersCount">0</h3>
-                        <p>Credit Customers</p>
+                        <p>ކްރެޑިޓް ކަސްޓަމަރުން</p>
                     </div>
                     <div class="stat-card">
                         <i class="fas fa-file-invoice-dollar expense-color"></i>
                         <h3 id="totalExpenses" class="expense-color">MVR 0</h3>
-                        <p>Total Expenses</p>
+                        <p>ޖުމްލަ ޚަރަދު</p>
                     </div>
                 </div>
 
                 <!-- Financial Overview 2025 Style -->
                 <div class="content-section">
-                    <h2>Financial Overview</h2>
+                    <h2 class="thaana-heading">ފައިނޭންޝިއަލް އޯވަރވިވް</h2>
+
                     <div class="financial-cards">
                         <div class="financial-card">
-                            <h3>Revenue</h3>
+                            <h3>އާމްދަނީ</h3>
                             <div class="financial-value" id="revenueValue">MVR 0.00</div>
                             <div class="financial-change positive">
                                 <i class="fas fa-arrow-up"></i>
-                                <span id="revenueChange">0% from last month</span>
+                                <span id="revenueChange"class="thaana-text">0% ފާއިތުވި މަހުން</span>
                             </div>
                             <div class="financial-trend">
                                 <canvas id="revenueTrend"></canvas>
                             </div>
                         </div>
                         <div class="financial-card">
-                            <h3>Expenses</h3>
+                            <h3>ޚަރަދު</h3>
                             <div class="financial-value" id="expensesValue">MVR 0.00</div>
                             <div class="financial-change negative">
                                 <i class="fas fa-arrow-down"></i>
-                                <span id="expensesChange">0% from last month</span>
+                                <span id="expensesChange" class="thaana-text">0% ފައިތުވި މަހުން</span>
+
                             </div>
                             <div class="financial-trend">
                                 <canvas id="expensesTrend"></canvas>
                             </div>
                         </div>
                         <div class="financial-card">
-                            <h3>Profit</h3>
+                            <h3>ފައިދާ</h3>
                             <div class="financial-value" id="profitValue">MVR 0.00</div>
                             <div class="financial-change positive">
                                 <i class="fas fa-arrow-up"></i>
-                                <span id="profitChange">0% from last month</span>
+                                <span id="profitChange"class="thaana-text">0% ފާއިތުވި މަހުން</span>
                             </div>
                             <div class="financial-trend">
                                 <canvas id="profitTrend"></canvas>
@@ -1481,14 +1570,14 @@
             <!-- POS System Tab -->
             <div id="pos" class="tab-content">
                 <div class="content-section">
-                    <h2>Point of Sale (POS) System</h2>
+                    
                     
                     <div class="pos-container">
                         <div class="pos-products" id="posProducts">
                             <!-- Products will be loaded here -->
                         </div>
                         <div class="pos-cart">
-                            <h3>Current Order</h3>
+                            
                             
                             <!-- Order Type Selection -->
                             <div class="order-type-selection">
@@ -1558,7 +1647,7 @@
                 </div>
 
                 <div class="content-section">
-                    <h2>Held Orders</h2>
+                   
                     <div class="table-responsive">
                         <table id="heldOrdersTable">
                             <thead>
@@ -1582,7 +1671,7 @@
             <!-- Orders Tab -->
             <div id="orders" class="tab-content">
                 <div class="content-section">
-                    <h2>Order Management</h2>
+                    
                     <div class="filters">
                         <div class="filter-group">
                             <label for="orderStatusFilter">Status:</label>
@@ -1640,7 +1729,7 @@
             <!-- Products Tab -->
             <div id="products" class="tab-content">
                 <div class="content-section">
-                    <h2>Product Management</h2>
+                    
                     <div class="tabs">
                         <div class="tab active" data-subtab="product-list">Product List</div>
                         <div class="tab" data-subtab="add-product">Add New Product</div>
@@ -1704,7 +1793,7 @@
             <!-- Categories Tab -->
             <div id="categories" class="tab-content">
                 <div class="content-section">
-                    <h2>Category Management</h2>
+                  
                     <div class="tabs">
                         <div class="tab active" data-subtab="category-list">Category List</div>
                         <div class="tab" data-subtab="add-category">Add New Category</div>
@@ -1741,7 +1830,7 @@
             <!-- Stock Management Tab -->
             <div id="stock" class="tab-content">
                 <div class="content-section">
-                    <h2>Stock Management</h2>
+                   
                     <div class="tabs">
                         <div class="tab active" data-subtab="stock-list">Stock List</div>
                         <div class="tab" data-subtab="stock-history">Stock History</div>
@@ -1867,7 +1956,7 @@
             <!-- Customer Management Tab -->
             <div id="customers" class="tab-content">
                 <div class="content-section">
-                    <h2>Customer Management</h2>
+                  
                     <div class="tabs">
                         <div class="tab active" data-subtab="customer-list">Customer List</div>
                         <div class="tab" data-subtab="add-customer">Add New Customer</div>
@@ -1943,7 +2032,7 @@
             <!-- Credit Management Tab -->
             <div id="credit" class="tab-content">
                 <div class="content-section">
-                    <h2>Credit Management</h2>
+                
                     <div class="tabs">
                         <div class="tab active" data-subtab="credit-list">Credit Accounts</div>
                         <div class="tab" data-subtab="credit-transactions">Credit Transactions</div>
@@ -2077,7 +2166,7 @@
             <!-- Expenses Management Tab -->
             <div id="expenses" class="tab-content">
                 <div class="content-section">
-                    <h2>Expenses Management</h2>
+                  
                     <div class="tabs">
                         <div class="tab active" data-subtab="expense-list">Expense List</div>
                         <div class="tab" data-subtab="add-expense">Add New Expense</div>
@@ -2160,7 +2249,7 @@
             <!-- Documents Tab -->
             <div id="documents" class="tab-content">
                 <div class="content-section">
-                    <h2>Document Management</h2>
+                
                     <div class="tabs">
                         <div class="tab active" data-subtab="create-quotation">Create Quotation</div>
                         <div class="tab" data-subtab="create-invoice">Create Invoice</div>
@@ -2347,7 +2436,7 @@
             <!-- Settings Tab -->
             <div id="settings" class="tab-content">
                 <div class="content-section">
-                    <h2>Store Settings</h2>
+                    
                     <form id="storeSettingsForm">
                         <div class="form-group">
                             <label for="storeName">Store Name</label>
@@ -2569,17 +2658,17 @@
     </div>
 
     <script>
-        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-        const firebaseConfig = {
-            apiKey: "AIzaSyAmy836Pc3NBJfqv7ovKeLuXEroEKKljes",
-            authDomain: "delivery-d07af.firebaseapp.com",
-            databaseURL: "https://delivery-d07af-default-rtdb.firebaseio.com",
-            projectId: "delivery-d07af",
-            storageBucket: "delivery-d07af.firebasestorage.app",
-            messagingSenderId: "18177223806",
-            appId: "1:18177223806:web:e09f3abf45b6d25fc2fc2f",
-            measurementId: "G-V7TC88WW4L"
-        };
+     // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyButkIKCwwUnwXSm_1SsskPWOaSEtW9hBM",
+  authDomain: "viewspot2025.firebaseapp.com",
+  databaseURL: "https://viewspot2025-default-rtdb.firebaseio.com",
+  projectId: "viewspot2025",
+  storageBucket: "viewspot2025.firebasestorage.app",
+  messagingSenderId: "965324919882",
+  appId: "1:965324919882:web:e0b269f74f5aca34a382b3",
+  measurementId: "G-RV0BJ03PSV"
+};
 
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
@@ -2698,7 +2787,7 @@
             // Owner password submission
             submitOwnerPassword.addEventListener('click', () => {
                 const password = document.getElementById('ownerPassword').value;
-                if (password === '8555') {
+                if (password === 'Anoof@25#') {
                     ownerPasswordModal.style.display = 'none';
                     ownerModal.style.display = 'block';
                     loadUsers();
@@ -3124,18 +3213,18 @@
         // Get tab title
         function getTabTitle(tab) {
             const titles = {
-                'dashboard': 'Admin Dashboard',
-                'pos': 'POS System',
-                'products': 'Product Management',
-                'categories': 'Category Management',
-                'stock': 'Stock Management',
-                'customers': 'Customer Management',
-                'credit': 'Credit Management',
-                'expenses': 'Expenses Management',
-                'documents': 'Document Management',
-                'settings': 'Store Settings'
+                'dashboard': 'ޑޭޝްބޯޑް',
+                'pos': 'ވިއްކުމުގެ ނިޒާމް',
+                'products': 'ޕްރޮޑަކްޓް މެނޭޖްމަންޓް',
+                'categories': 'ބާވަތްތައް ބެލެހެއްޓުން',
+                'stock': 'ސްޓޮކް ބެލެހެއްޓުން',
+                'customers': 'ކަސްޓަމާސް',
+                'credit': 'ކްރެޑިޓް ބެލެހެއްޓުން',
+                'expenses': 'ޚަރަދުތައް ބެލެހެއްޓުން',
+                'documents': 'ޑޮކިއުމެންޓް ބެލެހެއްޓުން',
+                'settings': 'ސެޓިން'
             };
-            return titles[tab] || 'Admin Dashboard';
+            return titles[tab] || 'ޕްރޮޑަކްޓް ބެލެހެއްޓުން';
         }
 
         // Set up real-time listeners for new orders
@@ -3440,8 +3529,8 @@
             });
             
             // Update percentage changes
-            document.getElementById('revenueChange').textContent = `+${Math.floor(Math.random() * 20) + 5}% from last month`;
-            document.getElementById('expensesChange').textContent = `${Math.floor(Math.random() * 10) + 1}% from last month`;
+            document.getElementById('revenueChange').textContent = `+${Math.floor(Math.random() * 20) + 5}% ފާއިތުވި މަހުން`;
+            document.getElementById('expensesChange').textContent = `${Math.floor(Math.random() * 10) + 1}% ފާއިތުވި މަހުން`;
             document.getElementById('profitChange').textContent = `${profit >= 0 ? '+' : ''}${Math.floor(Math.random() * 25) + 8}% from last month`;
         }
 
@@ -6529,5 +6618,33 @@
         // Initialize the admin panel when DOM is loaded
         document.addEventListener('DOMContentLoaded', initAdmin);
     </script>
+    <script>
+           // Full screen functionality
+            document.getElementById('fullscreen-btn').addEventListener('click', function() {
+                const elem = document.documentElement;
+                if (elem.requestFullscreen) {
+                    elem.requestFullscreen();
+                } else if (elem.webkitRequestFullscreen) { /* Safari */
+                    elem.webkitRequestFullscreen();
+                } else if (elem.msRequestFullscreen) { /* IE11 */
+                    elem.msRequestFullscreen();
+                }
+                
+                document.body.classList.add('fullscreen-mode');
+            });
+            
+            document.getElementById('exit-fullscreen-btn').addEventListener('click', function() {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.webkitExitFullscreen) { /* Safari */
+                    document.webkitExitFullscreen();
+                } else if (document.msExitFullscreen) { /* IE11 */
+                    document.msExitFullscreen();
+                }
+                
+                document.body.classList.remove('fullscreen-mode');
+            });
+    </script>
+    
 </body>
 </html>
